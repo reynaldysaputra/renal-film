@@ -1,0 +1,32 @@
+.link {
+    font-family: 'Netflix';
+    color: #E50D13;
+    text-decoration: none;
+    font-size: 2.2rem;
+}
+
+.about {
+    color : white;
+    text-decoration: none;
+    padding:10px;
+    background : transparent;
+    border:1px solid white;
+    transition: 0.4s;
+}
+
+.about:hover {
+    color: #000000 !important;
+    background-color: white;
+}
+
+@media only screen 
+    and (min-width : 200px)
+    and (max-width : 568px) 
+    and (orientation : portrait){
+        
+    .link {
+        font-size: 3rem;
+        font-weight: bold;
+    }
+
+}

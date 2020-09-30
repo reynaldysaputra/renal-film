@@ -2,15 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import Search from './SearchComponent/search';
-import {Products, products} from './ProdukComponent/product';
+import Application from './Application/Application';
+import ApplicationMovie from './Moive_Application/application';
 
 function Apps() {
     return(
-        <div className="container">
-            <Search/>
-            <Products/>
-        </div>
+        <ApplicationMovie/>
     )
 }
 
