@@ -8,6 +8,7 @@ const ContainerMovie = styled.div`
     gap : ${props => props.gap + 'px'};
     text-align : ${props => props.align};
     align-items : ${props => props.alignItem};
+    align-content : ${props => props.alignContent};
     justify-content : ${props => props.justify};
     padding : ${props => props.padding + 'px'};
     margin-top : ${props => props.marginTop + '%'};
@@ -34,18 +35,50 @@ const CardHeader = styled.div`
     width : 100% !important;
     height : ${props => props.height ? props.height + 'vh' : 'auto'};
     background : url('${props => props.url}');
-    background-size : cover;
     cursor: pointer;
-
+    background-size : cover;
+    
     @media ${(props) => props.theme.Media.smartphone} {
         height : ${props => props.heightResS ? props.heightResS + 'vh' : 'auto'};
         margin-top: ${props => props.marginTopResS + '%'};
     }
-
+    
     @media ${(props) => props.theme.Media.ipad} {
         height : ${props => props.heightResT ? props.heightResT + 'vh' : 'auto'};
         margin-top : ${props => props.marginTopResT + '%'};
+        background-size : contain;
+        background-repeat : no-repeat;
     }
 `;
 
-export {ContainerMovie, Card, CardHeader};
+const ImagePoster = styled.img`
+    width : 100%;
+    height : 100%;
+`;
+
+const ContainerMovieDetail = styled(ContainerMovie)`
+    height : ${props => props.height + 'vh'};
+    position : relative;
+    
+    @media ${(props) => props.theme.Media.smartphone} {
+        height : auto;
+        margin-top : 15%;
+    }
+
+    @media ${(props) => props.theme.Media.ipad} {
+        height : auto;
+        margin-top : 5%;
+    }
+`;
+
+const FrameVideo = styled.iframe`
+    border : 0px;
+    width : 90%;
+    height : 35vh;
+
+    @media ${(props) => props.theme.Media.smartphone} {
+        margin-top : ${props => props.marginTopResS + '%'};
+    }
+`;
+
+export {ContainerMovie, Card, CardHeader, ImagePoster, ContainerMovieDetail,FrameVideo};
