@@ -5,11 +5,11 @@ function Register() {
     return(
         <Fragment>
             <Styled.Label htmlFor="nama" margin_top="5">Nama Lengkap</Styled.Label>
-            <Styled.Input type="text" id="nama" placeholder="Nama lengkap" required />
+            <Styled.Input type="text" id="nama" placeholder="Nama lengkap" />
             <Styled.Label htmlFor="email" margin_top="5" >Email</Styled.Label>
-            <Styled.Input type="email" id="email" placeholder="renalfrontend@gmail.com" required />
+            <Styled.Input type="email" id="email" placeholder="renalfrontend@gmail.com" />
             <Styled.Label htmlFor="password" margin_top="5">Password</Styled.Label>
-            <Styled.Input type="password" id="password" placeholder="Password" required />
+            <Styled.Input type="password" id="password" placeholder="Password" />
 
             <Styled.ButtonSign>Daftar</Styled.ButtonSign>
         </Fragment>

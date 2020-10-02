@@ -1,25 +1,20 @@
 import React, { Fragment, useState } from 'react';
-import {BrowserRouter, Switch,Route, useHistory} from "react-router-dom";
+import {BrowserRouter, Switch,Route, Redirect} from "react-router-dom";
+
 import styled, { ThemeProvider } from 'styled-components';
 import ThemeApplication from '../styled_component/theme';
+
 import Joker from '../../img/joker1.jpg';
-import Register from './register';
-import Sign from './sign';
+
 import * as Styled from '../styled_component/login_styled/login_style';
 import * as Global from '../styled_component/global_styled';
 
-function Route_Login() {
-    return(
-        <Fragment>
-            <Switch>
-                <Route exact path='/'  />
-            </Switch>
-        </Fragment>
-    ) 
-}
+import Register from './register';
+import Sign from './sign';
+import Controller from '../controller/controller';
+import Error_Component from '../error_component/error';
 
 function ProviderLogin() {
-    const history = useHistory();
     const [state, setState] = useState('Masuk');
 
     const handlePage = (e) => {
@@ -29,18 +24,17 @@ function ProviderLogin() {
 
     return(
         <ThemeProvider theme={ThemeApplication}>
-            <Route_Login/>
             
             <Styled.ContainerLogin>
                 {/* Template 1 */}
                 <Styled.TemplateLogin img={Joker} after padding="60" height_responsive="80">
                     
-                    <Global.GridTemplate margin="10" row={['100']} rowResS={['100']} rowResT={['100']} items="center">
+                    <Global.GridTemplate margin="10" marginTop='10' marginTopResS='0' marginTopResT='0' row={['100']} rowResS={['100']} rowResT={['100']} items="center">
                         <Styled.Logo/>
                         <Styled.Title>RENALFILM</Styled.Title>
                     </Global.GridTemplate>
 
-                    <Global.GridTemplate margin="5" row={['100']}  rowResS={['100']} rowResT={['100']} gap='20'>
+                    <Global.GridTemplate margin="5" marginTop='5' row={['100']}  rowResS={['100']} rowResT={['100']} gap='20'>
                         <Global.ParagrafSmall opacity="0.8">RenalFilm adalah layanan Penyedia informasi film di seluruh dunia. Web ini dapat di gunakan untuk mencari film dan detail dari film tersebut, dan Kamu bisa menonton sepuasnya, kapan pun kamu mau tanpa satu iklan pun – semuanya. Selalu ada tontonan baru dan acara TV serta film baru yang ditambahkan setiap minggu!</Global.ParagrafSmall>
 
                         <Global.ParagrafSmall opacity="0.8">

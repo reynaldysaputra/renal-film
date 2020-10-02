@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { ThemeProvider, css } from 'styled-components';
+import styled, { ThemeProvider, css, createGlobalStyle } from 'styled-components';
 
 const GridTemplate = styled.div`
     width : 100%;
@@ -52,6 +52,7 @@ const ParagrafTitle = styled.h2`
     color: ${props => props.color};
     font-family : ${props => props.fontFamily};
     text-align : ${props => props.textAlign};
+    opacity : ${props => props.opacity};
     z-index : 2;
 
     @media ${(props) => props.theme.Media.smartphone} {
@@ -69,7 +70,7 @@ const ParagrafTitle = styled.h2`
 
 const Row = styled.div`
     width : ${props => props.width + '%'};
-    height : ${props => props.height + '%'};
+    height : ${props => props.heightV ? props.heightV + 'vh' : props.height + '%'};
     background : ${props => props.bg};
     display : ${props => props.display};
     grid-template-columns : ${props => props.row ? props.row.map(item => item !== 'auto' ? item + '%' : 'auto ') : '0'};
@@ -142,4 +143,10 @@ const HR = styled.hr`
     color : ${props => props.color};
 `;
 
-export {GridTemplate, Row, ParagrafSmall,ParagrafTitle,Input, Button, HR};
+const GlobalStyle = createGlobalStyle`
+    body {
+        background : #181818;
+    }
+`;
+
+export {GridTemplate, Row, ParagrafSmall,ParagrafTitle,Input, Button, HR,GlobalStyle};

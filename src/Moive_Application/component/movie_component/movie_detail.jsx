@@ -4,10 +4,14 @@ import * as Global from '../styled_component/global_styled';
 import Movie_Recomended from './movie_recomended';
 import Movie_Populer from './movie_populer';
 import Footer from '../footer/footer';
+import { ThemeProvider } from 'styled-components';
+import ThemeApplication from '../styled_component/theme';
 
 function Movie_Detail(){
     return(
-        <Fragment>
+        <ThemeProvider theme={ThemeApplication}>
+            <Global.GlobalStyle/>
+            
             <Styled.ContainerMovieDetail height='95' display='grid' row={['100']} rowResS={['100']} rowResT={['100']}>
                 <Global.Row width='100' maxContentResS='max-content' maxContentResT='max-content'>
                     <Styled.ImagePoster src='http://image.tmdb.org/t/p/w1280/1leAmLYYf3Bvf2BELEj2XL5s3aU.jpg'/>
@@ -38,7 +42,7 @@ function Movie_Detail(){
             <Movie_Populer/>
 
             <Footer/>
-        </Fragment>
+        </ThemeProvider>
     )
 }
 

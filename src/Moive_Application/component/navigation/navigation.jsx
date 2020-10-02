@@ -21,14 +21,12 @@ return(
     <ThemeProvider theme={ThemeApplication}>
         <Styled.GlobalStyle/>
 
-        <BrowserRouter>
-
             <Styled.ContainerNav>
                 <Styled.NavMovie>
                     <Global.Row alignItem='center' display='grid' row={['100']}>
                         {state ? 
-                            <NavLink exact to='/' className={Module.link}>R</NavLink> :
-                            <NavLink exact to='/' className={Module.link}>RENALFILM</NavLink>    
+                            <Global.ParagrafSmall fSize='1' fSizeResS='2.2' className={Module.link}>R</Global.ParagrafSmall> :
+                            <Global.ParagrafSmall fSize='2'  className={Module.link}>RENALFILM</Global.ParagrafSmall>    
                         }
                     </Global.Row>
 
@@ -41,18 +39,11 @@ return(
                             AKSES FULL MOVIE                            
                         </Styled.ButtonNav>
 
-                        <NavLink exact to='/about' className={Module.about}>Logout</NavLink>    
+                        <Styled.ButtonNav exact to='/about' className={Module.about}>Logout</Styled.ButtonNav>    
                     </Global.Row>
                 </Styled.NavMovie>
             </Styled.ContainerNav>
-                
-                {/* Switch Router */}
-                <Switch>
-                    <Route exact path='/' component={Movie_Detail} />
-                    <Route path='/about' component={Movie_Search}/>
-                </Switch>
-            </BrowserRouter>
-
+                    
             <SweetAlert
                 show={bool}
                 title='&#128591'

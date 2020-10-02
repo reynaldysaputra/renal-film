@@ -1,13 +1,25 @@
 import React, { Fragment } from 'react';
-import Footer_Component from '../footer/footer';
+
 import * as Global from '../styled_component/global_styled';
 import * as Styled from '../styled_component/movie_styled/movie_styled';
+import styled, {ThemeProvider} from 'styled-components';
+
+import Footer_Component from '../footer/footer';
 import Movie_Recomended from './movie_recomended';
 import Movie_Populer from './movie_populer';
+import ThemeApplication from '../styled_component/theme';
+import { Route, Switch, useHistory } from 'react-router';
+import Controller from '../controller/controller';
 
 function Movie_Search() {
+    const history = useHistory();
+
+    const oke = () => {
+        history.push('/movie/movie-detail');
+    }
+
     return(
-        <Fragment>
+        <ThemeProvider theme={ThemeApplication}>
             <Global.GridTemplate row={['50','50']}  rowResS={['100']} rowResT={['50','50']} marginTop="4" marginTopResS='13'>
 
                 <Global.Row padding='30'>
@@ -25,7 +37,7 @@ function Movie_Search() {
             <Styled.ContainerMovie display='grid' row={['23', '23', '23', '23']} rowResS={['100']} rowResT={['50','50']} gap='10' justify='center' padding='20'>
                 <Styled.Card>
                     <Styled.CardHeader height='60' heightResS='80' heightResT='55'>
-                        <Styled.ImagePoster src='http://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg'/>
+                        <Styled.ImagePoster src='http://image.tmdb.org/t/p/w500/or06FN3Dka5tukK1e9sl16pB3iy.jpg' onClick={oke}/>
                     </Styled.CardHeader>
                 </Styled.Card>
                 <Styled.Card>
@@ -73,7 +85,11 @@ function Movie_Search() {
             <Movie_Populer/>
 
             <Footer_Component/>
-        </Fragment>
+
+            <Switch>
+                <Route path='/movie/movie-detail' component={Controller} />
+            </Switch>
+        </ThemeProvider>
     )
 }
 

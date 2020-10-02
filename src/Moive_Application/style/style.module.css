@@ -1,8 +1,7 @@
 .link {
     font-family: 'Netflix';
-    color: #E50D13;
+    color: #E50D13 !important;
     text-decoration: none;
-    font-size: 2.2rem;
 }
 
 .about {
@@ -25,7 +24,6 @@
     and (orientation : portrait){
         
     .link {
-        font-size: 3rem;
         font-weight: bold;
     }
 
