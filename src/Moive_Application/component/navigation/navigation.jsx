@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {BrowserRouter, NavLink, Switch, Route} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 import * as Styled from '../styled_component/navigation_styled/nav_styled';
 import * as Global from '../styled_component/global_styled';
@@ -7,15 +7,12 @@ import { ThemeProvider } from 'styled-components';
 import ThemeApplication from '../styled_component/theme';
 import Module from '../../style/style.module.css';
 
-import Movie_Search from '../movie_component/movie_search';
-import Movie_Recomended from '../movie_component/movie_recomended';
-import Movie_Detail from '../movie_component/movie_detail';
-
 import SweetAlert from 'sweetalert2-react';
 
 function Navigation() {
-    const state = window.matchMedia('screen and (min-width: 200px) and (max-width : 568px').matches;
     const [bool, setBool] = useState(false);
+    const history = useHistory();
+    const state = window.matchMedia('screen and (min-width: 200px) and (max-width : 568px').matches;
 
 return(
     <ThemeProvider theme={ThemeApplication}>
@@ -25,8 +22,8 @@ return(
                 <Styled.NavMovie>
                     <Global.Row alignItem='center' display='grid' row={['100']}>
                         {state ? 
-                            <Global.ParagrafSmall fSize='1' fSizeResS='2.2' className={Module.link}>R</Global.ParagrafSmall> :
-                            <Global.ParagrafSmall fSize='2'  className={Module.link}>RENALFILM</Global.ParagrafSmall>    
+                            <Global.ParagrafSmall fSize='1' fSizeResS='2.2' className={Module.link} cursor>R</Global.ParagrafSmall> :
+                            <Global.ParagrafSmall fSize='2'  className={Module.link} onClick={() => history.push('/movie')} cursor>RENALFILM</Global.ParagrafSmall>    
                         }
                     </Global.Row>
 
@@ -39,7 +36,7 @@ return(
                             AKSES FULL MOVIE                            
                         </Styled.ButtonNav>
 
-                        <Styled.ButtonNav exact to='/about' className={Module.about}>Logout</Styled.ButtonNav>    
+                        <Styled.ButtonNav className={Module.about} onClick={() => history.push('/')}>Logout</Styled.ButtonNav>    
                     </Global.Row>
                 </Styled.NavMovie>
             </Styled.ContainerNav>

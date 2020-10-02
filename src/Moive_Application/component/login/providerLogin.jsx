@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from 'react';
-import {BrowserRouter, Switch,Route, Redirect} from "react-router-dom";
 
-import styled, { ThemeProvider } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 import ThemeApplication from '../styled_component/theme';
 
 import Joker from '../../img/joker1.jpg';
@@ -11,8 +10,6 @@ import * as Global from '../styled_component/global_styled';
 
 import Register from './register';
 import Sign from './sign';
-import Controller from '../controller/controller';
-import Error_Component from '../error_component/error';
 
 function ProviderLogin() {
     const [state, setState] = useState('Masuk');

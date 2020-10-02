@@ -1,9 +1,12 @@
 import React, { Fragment } from 'react';
+
 import * as Styled from '../styled_component/movie_styled/movie_styled';
 import * as Global from '../styled_component/global_styled';
+
 import Movie_Recomended from './movie_recomended';
 import Movie_Populer from './movie_populer';
 import Footer from '../footer/footer';
+
 import { ThemeProvider } from 'styled-components';
 import ThemeApplication from '../styled_component/theme';
 

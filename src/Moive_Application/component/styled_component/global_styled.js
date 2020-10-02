@@ -31,6 +31,7 @@ const ParagrafSmall = styled.p`
     font-size : ${props => props.fSize + 'rem'};
     margin : ${props => props.margin ? props.margin + 'px' : '0'};
     margin-top : ${props => props.marginTop ? props.marginTop + 'px' : '0'};
+    cursor : ${props => props.cursor && 'pointer'};
 
     @media ${(props) => props.theme.Media.smartphone} {
         margin : 0%;

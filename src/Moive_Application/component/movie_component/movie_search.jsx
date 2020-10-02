@@ -1,14 +1,14 @@
-import React, { Fragment } from 'react';
+import React from 'react';
+import { Route, Switch, useHistory } from 'react-router';
 
 import * as Global from '../styled_component/global_styled';
 import * as Styled from '../styled_component/movie_styled/movie_styled';
-import styled, {ThemeProvider} from 'styled-components';
+import {ThemeProvider} from 'styled-components';
 
 import Footer_Component from '../footer/footer';
 import Movie_Recomended from './movie_recomended';
 import Movie_Populer from './movie_populer';
 import ThemeApplication from '../styled_component/theme';
-import { Route, Switch, useHistory } from 'react-router';
 import Controller from '../controller/controller';
 
 function Movie_Search() {

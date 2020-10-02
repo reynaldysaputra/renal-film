@@ -7,7 +7,7 @@ import './style/global.css';
 
 function ApplicationMovie() {
     return(
-        <ReactRoute forceRefresh={false}>   
+        <ReactRoute forceRefresh={true}>   
             <Switch>
                 <Route exact path='/' component={ProviderLogin}  />
 
