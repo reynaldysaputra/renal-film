@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import * as Styled from '../styled_component/movie_styled/movie_styled';
 import * as Global from '../styled_component/global_styled';
@@ -9,38 +9,76 @@ import Footer from '../footer/footer';
 
 import { ThemeProvider } from 'styled-components';
 import ThemeApplication from '../styled_component/theme';
+import { useLocation } from 'react-router';
+
+import { useEffect } from 'react';
+import GetApi from './logic_movie';
+import axios from 'axios';
 
 function Movie_Detail(){
+    const [dataDetail, setDataD] = useState();
+    const [dataVideo, setDataV] = useState();
+    const location = useLocation();
+    const url = 'http://image.tmdb.org/t/p/w1280';
+    const urlVideo = 'https://www.youtube.com/embed/';
+
+    // Get api data detail
+    useEffect(() => {
+        GetApi(`https://api.themoviedb.org/3/movie/${location.state}?api_key=0318984c50c6c5fab9d705be653ad475&language=ID-IDN`)
+        .then(res => setDataD(res))
+        .catch(err => console.log(err))
+    }, [])
+
+    // Get api data video
+    useEffect(() => {
+        GetApi(`https://api.themoviedb.org/3/movie/${location.state}/videos?api_key=0318984c50c6c5fab9d705be653ad475&language=ID-IDN`)
+        .then(res => setDataV(res.results))
+        .catch(err => console.log(err))
+    }, [])
+
     return(
         <ThemeProvider theme={ThemeApplication}>
             <Global.GlobalStyle/>
-            
-            <Styled.ContainerMovieDetail height='95' display='grid' row={['100']} rowResS={['100']} rowResT={['100']}>
-                <Global.Row width='100' maxContentResS='max-content' maxContentResT='max-content'>
-                    <Styled.ImagePoster src='http://image.tmdb.org/t/p/w1280/1leAmLYYf3Bvf2BELEj2XL5s3aU.jpg'/>
-                </Global.Row>
-                <Global.Row display='grid' row={['100']} width='80' height='100' position='absolute' positionResS='relative' widthResS='100' bgLinearMovie bgLinearMovieResS before alignItem='center' paddingLeft='5' paddingRight='35' paddingRightResT='30' paddingLeftResT='5' paddingRightResS='10' marginTopResS='3' alignItemResS='start'>
-                    
-                    <div>
-                        <Global.ParagrafTitle color='white' marginTopResS='10'>Avengers End Game</Global.ParagrafTitle>
                         
-                        <Global.ParagrafSmall color='white' opacity='0.6' fSizeResD='1' marginTopResS='10' fSizeResS='0.9'>2020-10-14 &nbsp;&nbsp;|&nbsp;&nbsp;  Advanture,Action,Science Fiction</Global.ParagrafSmall>
+            {dataDetail !== undefined && 
+                <Styled.ContainerMovieDetail height='95' display='grid' row={['100']} rowResS={['100']} rowResT={['100']}>
+                    <Global.Row width='100' maxContentResS='max-content' maxContentResT='max-content'>
+                        {
+                            dataDetail.backdrop_path !== null 
+                            ?
+                            <Styled.ImagePoster src={url + dataDetail.backdrop_path}/> : 
+                            <Styled.ImagePoster src='https://i2.wp.com/topikpapua.com/wp-content/plugins/accelerated-mobile-pages/images/SD-default-image.png?resize=1280%2C720&ssl=1'/>
+                        }
+                    </Global.Row>
+                    <Global.Row display='grid' row={['100']} width='80' height='100' position='absolute' positionResS='relative' widthResS='100' bgLinearMovie bgLinearMovieResS before alignItem='center' paddingLeft='5' paddingRight='35' paddingRightResT='30' paddingLeftResT='5' paddingRightResS='10' marginTopResS='3' alignItemResS='start'>
+                        
+                        <div>
+                            <Global.ParagrafTitle color='white' marginTopResS='10'>{dataDetail.original_title}</Global.ParagrafTitle>
+                            
+                            <Global.ParagrafSmall color='white' opacity='0.6' fSizeResD='1' marginTopResS='10' fSizeResS='0.9'>{dataDetail.release_date} &nbsp;&nbsp;|&nbsp;&nbsp;  {dataDetail.genres.map((item,index) =>  item.name + ' ')}</Global.ParagrafSmall>
 
-                        <Global.ParagrafSmall marginTop='20' fSizeResD='1' marginTopResS='10'>
-                            After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.
-                        </Global.ParagrafSmall>
-                    </div>
-                </Global.Row>
-            </Styled.ContainerMovieDetail>
+                            <Global.ParagrafSmall marginTop='20' fSizeResD='1' marginTopResS='10'>
+                                {dataDetail.overview}
+                            </Global.ParagrafSmall>
+                        </div>
+                    </Global.Row>
+                </Styled.ContainerMovieDetail>
+            }
 
-            <Styled.ContainerMovieDetail height='70' display='grid' row={['40']} rowResT={['70']} rowResS={['90']} justify='start' alignContent='center' padding='20'>
+            {dataVideo !== undefined && 
+            <Styled.ContainerMovieDetail height='auto'  padding='10'>
                 <Global.Row width='100' height='100' widthResT='100'>
-                    <Global.ParagrafTitle color='#A3A3A3' fSize='1.5' fSizeResT='1.3' fSizeResS='1.1'>Trailer Avengers End Game</Global.ParagrafTitle>
-                    <Styled.FrameVideo src="https://www.youtube.com/embed/5GkD7hrsY_g" allowFullScreen marginTopResS='5' />
+                        {dataVideo.map(item => {
+                            return(
+                                item.type === 'Trailer' && 
+                                <Styled.FrameVideo key={item.id} src={urlVideo + item.key} margin='3' marginTopResS='5' allowfullscreen float='left' />
+                            )
+                        })}
                 </Global.Row>
             </Styled.ContainerMovieDetail>
+            } 
 
-            <Movie_Recomended/>
+            <Movie_Recomended data={location.state}/>
 
             <Movie_Populer/>
 
@@ -50,3 +88,14 @@ function Movie_Detail(){
 }
 
 export default Movie_Detail;
+
+// dataVideo.map(item => {
+//     return(
+//         item.type === 'Trailer' && 
+//             {console.log(item)}
+//             <Global.Row width='100' height='100' widthResT='100'>
+//                 <Global.ParagrafTitle color='#A3A3A3' fSize='1.5' fSizeResT='1.3' fSizeResS='1.1'>Trailer Avengers End Game</Global.ParagrafTitle>
+//                 <Styled.FrameVideo src={urlVideo + item.key} allowFullScreen marginTopResS='5' />
+//             </Global.Row>
+//     )
+// })

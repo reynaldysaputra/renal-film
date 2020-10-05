@@ -31,7 +31,7 @@ const ParagrafSmall = styled.p`
     font-size : ${props => props.fSize + 'rem'};
     margin : ${props => props.margin ? props.margin + 'px' : '0'};
     margin-top : ${props => props.marginTop ? props.marginTop + 'px' : '0'};
-    cursor : ${props => props.cursor && 'pointer'};
+    cursor : ${props => props.cursors && 'pointer'};
 
     @media ${(props) => props.theme.Media.smartphone} {
         margin : 0%;
@@ -89,6 +89,7 @@ const Row = styled.div`
     background-image : url(${props => props.url});
     background-size : cover;
     min-height: 100%;
+    float : ${props => props.float};
     background: ${props => props.bgLinearMovie && 'linear-gradient(to right,#171717 0,rgba(23,23,23,.98) 20%,rgba(23,23,23,.97) 25%,rgba(23,23,23,.95) 35%,rgba(23,23,23,.94) 40%,rgba(23,23,23,.92) 45%,rgba(23,23,23,.9) 50%,rgba(23,23,23,.87) 55%,rgba(23,23,23,.82) 60%,rgba(23,23,23,.75) 65%,rgba(23,23,23,.63) 70%,rgba(23,23,23,.45) 75%,rgba(23,23,23,.27) 80%,rgba(23,23,23,.15) 85%,rgba(23,23,23,.08) 90%,rgba(23,23,23,.03) 95%,rgba(23,23,23,0) 100%)'};
 
     @media ${(props) => props.theme.Media.smartphone} {

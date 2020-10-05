@@ -73,10 +73,14 @@ const ContainerMovieDetail = styled(ContainerMovie)`
 
 const FrameVideo = styled.iframe`
     border : 0px;
-    width : 90%;
+    width : auto;
     height : 35vh;
+    float : ${props => props.float};
+    margin : ${props => props.margin + '%'};
 
     @media ${(props) => props.theme.Media.smartphone} {
+        float : ${props => props.floatRes};
+        margin : ${props => props.marginResS + '%'};
         margin-top : ${props => props.marginTopResS + '%'};
     }
 `;

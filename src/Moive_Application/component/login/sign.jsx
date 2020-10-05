@@ -1,12 +1,11 @@
 import React, { createContext, Fragment,useState } from 'react';
 import { useRef } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import * as Global from '../styled_component/global_styled';
 import * as  Styled from '../styled_component/login_styled/login_style';
 
 import SweetAlert from 'sweetalert2-react';
-import { useEffect } from 'react';
 
 function Sign() {
     const [bool1, setBool1] = useState(false);
@@ -20,7 +19,9 @@ function Sign() {
     const RedirectLogin = (e) => {
         e.preventDefault();
 
-        if(inputEmail.current.value == '' || inputPassword.current.value === '') setBool1(true);
+        if(inputEmail.current.value == '' || inputPassword.current.value === '') {
+            setBool1(true);
+        }
         else  {
              if(data == null) setBool3(true)
             else {

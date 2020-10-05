@@ -2,14 +2,14 @@ import React from 'react';
 import { Redirect, useHistory, useLocation } from 'react-router';
 
 import ThemeApplication from '../styled_component/theme';
-import styled, {ThemeProvider} from 'styled-components';
+import {ThemeProvider} from 'styled-components';
 
 import Navigation from '../navigation/navigation';
-import Movie_Search from '../movie_component/movie_search';
+import Movie_Template from '../movie_component/movie_template';
 import Movie_Detail from '../movie_component/movie_detail';
 import Error_Component from '../error_component/error';
 
-function Controller() {
+function Controller({match}) {
     const history = useHistory();
     const location = useLocation();
 
@@ -18,10 +18,10 @@ function Controller() {
             return(
                 <>
                     <Navigation/>
-                    <Movie_Search/>
+                    <Movie_Template/>
                 </>
             )
-        }else if(location.pathname === '/movie/movie-detail') {
+        }else if(location.pathname === `/movie/movie-detail/${location.state}`) {
             return (
                 <>
                     <Navigation/>
@@ -31,18 +31,16 @@ function Controller() {
         }else if(location.pathname === '/') {
             return <Redirect to='/' />
         }else {
-            return(
-                <>
-                    <Error_Component/>
-                </>
-            )
+            return <Error_Component/>
         }
     }
 
     return(
         <ThemeProvider theme={ThemeApplication}>
             {console.log('controller rendering')}
-            {console.log(history)}
+            {/* {console.log(history)}
+            {console.log(match)}
+            {console.log(location)} */}
             {ControllerRouteMovie()}
         </ThemeProvider>
     )

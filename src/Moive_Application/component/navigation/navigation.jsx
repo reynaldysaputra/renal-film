@@ -22,8 +22,14 @@ return(
                 <Styled.NavMovie>
                     <Global.Row alignItem='center' display='grid' row={['100']}>
                         {state ? 
-                            <Global.ParagrafSmall fSize='1' fSizeResS='2.2' className={Module.link} cursor>R</Global.ParagrafSmall> :
-                            <Global.ParagrafSmall fSize='2'  className={Module.link} onClick={() => history.push('/movie')} cursor>RENALFILM</Global.ParagrafSmall>    
+                            <Global.ParagrafSmall fSize='1' fSizeResS='2.2' className={Module.link} onClick={() => history.push({
+                                pathname : '/movie',
+                                state : history.location.pathname
+                            })} cursors>R</Global.ParagrafSmall> :
+                            <Global.ParagrafSmall fSize='2'  className={Module.link} onClick={() => history.push({
+                                pathname : '/movie',
+                                state : history.location.pathname
+                            })} cursors>RENALFILM</Global.ParagrafSmall>    
                         }
                     </Global.Row>
 
