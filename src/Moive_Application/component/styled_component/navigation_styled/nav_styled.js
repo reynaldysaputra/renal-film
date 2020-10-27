@@ -15,7 +15,7 @@ const ContainerNav = styled.div`
     display : flex;
     justify-content : center;
     box-sizing : border-box;
-    z-index : 2;
+    z-index : ${props => props.zIndex};
 
     @media ${(props) => props.theme.Media.smartphone} { 
         background : rgba(0,0,0,.75);

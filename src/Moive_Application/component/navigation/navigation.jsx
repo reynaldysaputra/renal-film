@@ -18,7 +18,7 @@ return(
     <ThemeProvider theme={ThemeApplication}>
         <Styled.GlobalStyle/>
 
-            <Styled.ContainerNav>
+            <Styled.ContainerNav zIndex='99999999999999999999999'>
                 <Styled.NavMovie>
                     <Global.Row alignItem='center' display='grid' row={['100']}>
                         {state ? 

@@ -43,6 +43,7 @@ function Sign() {
     
     return(
         <Fragment>
+            {console.log('rendering')}
             <form>
                 <Styled.Label htmlFor="email" margin_top="5">Email</Styled.Label>
                 <Styled.Input type="email" id="email" placeholder="renalfrontend@gmail.com" ref={inputEmail} />

@@ -19,13 +19,16 @@ function Movie_Template() {
     const [dataMovieSearch, setDataS] = useState();
     const inputRef = useRef();
 
-    const handleSearchMovie = () => {
+    const ApiSearch = () => {
         let valueInput = inputRef.current.value;
 
         GetApi(`https://api.themoviedb.org/3/search/movie?api_key=0318984c50c6c5fab9d705be653ad475&query=${valueInput}&language=id-IDN`)
         .then(res => setDataS(res.results))
         .catch(err => console.log(err))
     }
+
+    const handleSearchMovie = () => ApiSearch();
+    const handleEnter = (e) => (e.which == 13) && ApiSearch();
 
     return(
         <ThemeProvider theme={ThemeApplication}>
@@ -37,7 +40,7 @@ function Movie_Template() {
                 </Global.Row>
 
                 <Global.Row padding='30' display='grid' row={['auto','auto']} rowResS={['100']} alignItem='center' justify='center' gap='10'>
-                    <Global.Input type="text" placeholder='Cari Film' fSize='1.2' padding='10' ref={inputRef} />
+                    <Global.Input type="text" placeholder='Cari Film' fSize='1.2' padding='10' onKeyPress={handleEnter} ref={inputRef} />
                     <Global.Button type="submit" placeholder='Cari Film' fSize='1.2' padding='10' onClick={handleSearchMovie}>Cari</Global.Button>
                 </Global.Row>
 
@@ -45,9 +48,6 @@ function Movie_Template() {
 
             {/* Movie Search */}
             {dataMovieSearch != undefined && <Movie_Search data={dataMovieSearch}/>}
-
-            {/* Movie Recomended */}
-            {/* <Movie_Recomended data={dataMovieRecomendation}/> */}
 
             {/* Movie Populer */}
             <Movie_Populer/>

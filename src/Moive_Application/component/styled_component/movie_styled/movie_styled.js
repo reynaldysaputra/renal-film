@@ -58,11 +58,12 @@ const ImagePoster = styled.img`
 
 const ContainerMovieDetail = styled(ContainerMovie)`
     height : ${props => props.height + 'vh'};
+    height : ${props => props.heightAuto && 'auto'};
     position : relative;
     
     @media ${(props) => props.theme.Media.smartphone} {
         height : auto;
-        margin-top : 15%;
+        margin-top : ${props => props.marginTopResS ? props.marginTopResS + '%' : '0px'};
     }
 
     @media ${(props) => props.theme.Media.ipad} {
@@ -82,6 +83,11 @@ const FrameVideo = styled.iframe`
         float : ${props => props.floatRes};
         margin : ${props => props.marginResS + '%'};
         margin-top : ${props => props.marginTopResS + '%'};
+    }
+
+    @media only screen and (min-width : 320px) and (max-width : 568px) {
+        margin-left : 0px;
+        margin-right : 0px;
     }
 `;
 

@@ -95,6 +95,7 @@ const Row = styled.div`
     @media ${(props) => props.theme.Media.smartphone} {
         width : ${props => props.widthResS + '%'};
         height : ${props => props.maxContentResS};
+        height : ${props => props.heightAuto && 'auto'};
         grid-template-columns : ${props => props.rowResS && props.rowResS.map(item => item !== 'auto' ? item + '%' : 'auto ')};
         align-items : ${props => props.alignItemResS};
         position : ${props => props.positionResS};

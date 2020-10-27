@@ -13,7 +13,6 @@ import { useLocation } from 'react-router';
 
 import { useEffect } from 'react';
 import GetApi from './logic_movie';
-import axios from 'axios';
 
 function Movie_Detail(){
     const [dataDetail, setDataD] = useState();
@@ -41,7 +40,7 @@ function Movie_Detail(){
             <Global.GlobalStyle/>
                         
             {dataDetail !== undefined && 
-                <Styled.ContainerMovieDetail height='95' display='grid' row={['100']} rowResS={['100']} rowResT={['100']}>
+                <Styled.ContainerMovieDetail height='100' display='grid' row={['100']} rowResS={['100']} rowResT={['100']} marginTopResS='15'>
                     <Global.Row width='100' maxContentResS='max-content' maxContentResT='max-content'>
                         {
                             dataDetail.backdrop_path !== null 
@@ -66,12 +65,12 @@ function Movie_Detail(){
             }
 
             {dataVideo !== undefined && 
-            <Styled.ContainerMovieDetail height='auto'  padding='10'>
-                <Global.Row width='100' height='100' widthResT='100'>
+            <Styled.ContainerMovieDetail padding='10' heightAuto>
+                <Global.Row width='100' widthResT='100' heightAuto>
                         {dataVideo.map(item => {
                             return(
                                 item.type === 'Trailer' && 
-                                <Styled.FrameVideo key={item.id} src={urlVideo + item.key} margin='3' marginTopResS='5' allowfullscreen float='left' />
+                                <Styled.FrameVideo key={item.id} src={urlVideo + item.key} margin='3' marginTopResS='5' allowFullScreen={true} webkitallowfullscreen={true} mozallowfullscreen={true} float='left' />
                             )
                         })}
                 </Global.Row>
@@ -88,14 +87,3 @@ function Movie_Detail(){
 }
 
 export default Movie_Detail;
-
-// dataVideo.map(item => {
-//     return(
-//         item.type === 'Trailer' && 
-//             {console.log(item)}
-//             <Global.Row width='100' height='100' widthResT='100'>
-//                 <Global.ParagrafTitle color='#A3A3A3' fSize='1.5' fSizeResT='1.3' fSizeResS='1.1'>Trailer Avengers End Game</Global.ParagrafTitle>
-//                 <Styled.FrameVideo src={urlVideo + item.key} allowFullScreen marginTopResS='5' />
-//             </Global.Row>
-//     )
-// })

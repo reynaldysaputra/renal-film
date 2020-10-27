@@ -21,7 +21,6 @@ function ProviderLogin() {
 
     return(
         <ThemeProvider theme={ThemeApplication}>
-            
             <Styled.ContainerLogin>
                 {/* Template 1 */}
                 <Styled.TemplateLogin img={Joker} after padding="60" height_responsive="80">

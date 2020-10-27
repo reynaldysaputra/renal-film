@@ -6,7 +6,7 @@ function Footer_Component() {
     return(
         <Footer>    
             <Global.ParagrafSmall margin='0' color='rgba(255, 255, 255, 0.699)'>
-                © 2014 Copyright RENALFILM
+                © 2020 Copyright RENALFILM
             </Global.ParagrafSmall>
         </Footer>
     )
